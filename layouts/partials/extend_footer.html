@@ -1,0 +1,28 @@
+<div id="mao-mascot" title="点我喵~">
+  <img src="/images/mao.png" alt="猫娘吉祥物" id="mao-img" />
+  <div id="mao-bubble" class="hidden"></div>
+</div>
+<style>
+#mao-mascot{position:fixed;right:18px;bottom:18px;width:92px;z-index:999;cursor:pointer;filter:drop-shadow(0 6px 12px rgba(0,0,0,.18));}
+#mao-img{width:100%;border-radius:50%;display:block;animation:maoFloat 3s ease-in-out infinite;box-shadow:0 4px 14px rgba(236,72,153,.25);}
+@keyframes maoFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+#mao-mascot:hover #mao-img{animation:maoWiggle .5s ease-in-out;}
+@keyframes maoWiggle{0%,100%{transform:rotate(0)}25%{transform:rotate(-6deg)}75%{transform:rotate(6deg)}}
+#mao-bubble{position:absolute;right:108px;bottom:22px;background:#fff;border:2px solid #f9a8d4;color:#374151;padding:8px 12px;border-radius:12px;font-size:13px;max-width:200px;box-shadow:0 4px 12px rgba(0,0,0,.12);white-space:nowrap;}
+#mao-bubble::after{content:'';position:absolute;left:-9px;bottom:14px;border:6px solid transparent;border-right-color:#fff;}
+#mao-bubble.hidden{display:none;}
+</style>
+<script>
+(function(){
+  var box=document.getElementById('mao-mascot');
+  var bubble=document.getElementById('mao-bubble');
+  var msgs=['喵~ 欢迎光临！','要不要看看我的博客？','安全学习，冲鸭！','喵呜，你好呀～','今天也要元气满满！'];
+  var timer=null;
+  box.addEventListener('click',function(){
+    bubble.textContent=msgs[Math.floor(Math.random()*msgs.length)];
+    bubble.classList.remove('hidden');
+    clearTimeout(timer);
+    timer=setTimeout(function(){bubble.classList.add('hidden');},2600);
+  });
+})();
+</script>
